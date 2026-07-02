@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@theme {
+  --color-creme: #f4ebd9;
+  --color-bauhaus-blue: #1a66ff;
+  --color-bauhaus-red: #e63917;
+  --color-bauhaus-yellow: #f2d13d;
+  --color-bauhaus-pink: #f2b6c1;
+  --color-dark: #111111;
+}
+
+:root {
+  --shadow-card: 4px 4px 0 #111111;
+  --shadow-shift: 8px 8px 0 #111111;
+  --transition-base: 250ms ease;
+  --transition-fast: 150ms ease;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #f4ebd9;
+    color: #111111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #1a66ff;
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 3px solid #1a66ff;
+    outline-offset: 3px;
+  }
+}
+
+/* ─── Geometric & pattern utilities ─── */
+
+@layer utilities {
+  .dot-pattern {
+    background-image: radial-gradient(
+      circle,
+      #111111 1.5px,
+      transparent 1.5px
+    );
+    background-size: 12px 12px;
+  }
+
+  .line-pattern {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(17, 17, 17, 0.06) 39px,
+      rgba(17, 17, 17, 0.06) 40px
+    );
+  }
+
+  .card-hover {
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .card-hover:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: var(--shadow-shift);
+  }
+}
+
+/* ─── Nav link hover underline ─── */
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e63917;
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+/* ─── Skill chip hover ─── */
+
+.skill-chip {
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast), transform var(--transition-fast);
+}
+
+.skill-chip:hover {
+  background-color: #1a66ff;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ─── Contact link hover ─── */
+
+.contact-link {
+  transition: background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.contact-link:hover {
+  background-color: #ffffff;
+  color: #1a66ff;
+}
+
+/* ─── Hero geometry entrance animations ─── */
+
+@keyframes shape-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-shape {
+  opacity: 0;
+  animation: shape-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Hero typewriter (tech-stack line) ─── */
+
+/* Ghost/reveal stack: the invisible ghost sets the true content width
+   (proportional fonts make ch-unit guesses inaccurate), the reveal
+   layer animates over it so the caret lands exactly at the last letter. */
+.typewriter {
+  position: relative;
+  display: inline-grid;
+  vertical-align: bottom;
+}
+
+.typewriter-ghost {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.typewriter-reveal {
+  grid-area: 1 / 1;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 3px solid #1a66ff;
+  animation: type-in 1.8s steps(var(--type-chars), end) 0.9s forwards,
+    caret-blink 0.8s step-end infinite;
+}
+
+@keyframes type-in {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes caret-blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #1a66ff;
+  }
+}
+
+/* ─── Reduced motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

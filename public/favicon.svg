@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Geometric K — stem + two rotated arms, solid vector fill (no pixel grid) -->
+  <rect x="4" y="4" width="6" height="24" fill="#1a66ff"/>
+  <rect x="10" y="13" width="20" height="6" fill="#e63917" transform="rotate(-36.87 10 16)"/>
+  <rect x="10" y="13" width="20" height="6" fill="#e63917" transform="rotate(36.87 10 16)"/>
+</svg>
