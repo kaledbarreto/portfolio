@@ -122,7 +122,7 @@ export const projects: ProjectItem[] = [
     description:
       'Site for a training initiative offering audiovisual and AI education to youth from Brazilian favelas, run by CUFA and Favela Filmes in partnership with Instituto Heineken and Rock in Rio.',
     stack: ['React', 'Next.js', 'Tailwind CSS'],
-    liveUrl: 'https://criativosdafavela.com.br',
+    liveUrl: 'https://www.criativosdafavela.com.br',
     accentColor: '#f2d13d',
     image: '/criativosdafavela.png',
   },
